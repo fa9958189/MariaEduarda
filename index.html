@@ -1,77 +1,223 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html>
 <head>
+    <base href="." />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surpresa Romântica</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <title>Comemorando 2 Anos de Amor</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Dancing Script', cursive;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            min-height: 100vh;
+            color: #4a4a4a;
+        }
+        
+        .anniversary-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: #e25c67;
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .photo-frame {
+            position: relative;
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+        
+        .photo-frame:hover {
+            transform: scale(1.03);
+        }
+        
+        .photo-placeholder img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        .quote {
+            font-size: 1.2em;
+            color: #e25c67;
+            margin: 10px 0;
+            font-style: italic;
+        }
+        
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        
+        .love-btn {
+            background: #e25c67;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin: 20px auto;
+            display: block;
+            font-size: 1.2em;
+        }
+        
+        .love-btn:hover {
+            transform: scale(1.05);
+            background: #d14d58;
+        }
+        
+        @keyframes float-up {
+            from {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            to {
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .video-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .video-container video {
+            width: 90%;
+            max-width: 800px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
-    <div class="container mt-5">
-        <div class="jumbotron text-center">
-            <h1 class="display-4">Para Minha Amada</h1>
-            <p class="lead">Uma coleção de momentos especiais</p>
+    <div class="floating-hearts" id="hearts"></div>
+    
+    <div class="anniversary-container">
+        <div class="header">
+            <h1>✨ 2 Anos de Amor e Felicidade ✨</h1>
+            <p>Celebrando nossa jornada juntos</p>
         </div>
-
-        <div class="row">
-            <!-- Galeria de Fotos -->
-            <div class="col-md-6">
-                <h2 class="text-center mb-4">Fotos</h2>
-                <div class="row">
-                    <div class="col-md-6 mb-4">
-                        <img src="/Fotos/WhatsApp Image 2024-05-17 at 11.02.24 (1).jpeg" class="img-fluid rounded shadow" alt="Foto 1">
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <img src="/Fotos/WhatsApp Image 2024-05-17 at 11.02.24.jpeg" class="img-fluid rounded shadow" alt="Foto 2">
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <img src="/Fotos/WhatsApp Image 2024-05-17 at 11.02.25 (1).jpeg" class="img-fluid rounded shadow" alt="Foto 3">
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <img src="/Fotos/WhatsApp Image 2024-05-17 at 11.02.25 (2).jpeg" class="img-fluid rounded shadow" alt="Foto 4">
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <img src="/Fotos/WhatsApp Image 2024-05-17 at 11.02.25.jpeg" class="img-fluid rounded shadow" alt="Foto 4">
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <img src="/Fotos/WhatsApp Image 2024-05-17 at 11.02.35.jpeg" class="img-fluid rounded shadow" alt="Foto 4">
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <img src="/Fotos/WhatsApp Image 2024-05-17 at 11.02.38.jpeg" class="img-fluid rounded shadow" alt="Foto 4">
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <img src="/Fotos/WhatsApp Image 2024-05-17 at 11.02.42 (1).jpeg" class="img-fluid rounded shadow" alt="Foto 4">
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <img src="/Fotos/WhatsApp Image 2024-05-17 at 11.02.42.jpeg" class="img-fluid rounded shadow" alt="Foto 4">
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <img src="/Fotos/WhatsApp Image 2024-05-17 at 11.02.43 (1).jpeg" class="img-fluid rounded shadow" alt="Foto 4">
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <img src="/Fotos/WhatsApp Image 2024-05-17 at 11.02.43.jpeg" class="img-fluid rounded shadow" alt="Foto 4">
-                    </div>
+    
+        <div class="photo-gallery">
+            <div class="photo-frame">
+                <div class="photo-placeholder">
+                    <img src="/Fotos/foto 04.jpeg" alt="Foto 1">
                 </div>
+                <p class="quote">"O amor é a poesia dos sentidos."</p>
             </div>
-
-            <!-- Galeria de Vídeos -->
-            <div class="col-md-6">
-                <h2 class="text-center mb-4">Vídeos</h2>
-                <div class="row">
-                    <div class="col-md-12 mb-4">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="/Videos/video.mp4" allowfullscreen></iframe>
-                        </div>
-                    </div>
+            <div class="photo-frame">
+                <div class="photo-placeholder">
+                    <img src="/Fotos/foto 01.jpeg" alt="Foto 2">
                 </div>
+                <p class="quote">"Cada momento ao seu lado é um presente inesquecível."</p>
             </div>
+            <div class="photo-frame">
+                <div class="photo-placeholder">
+                    <img src="/Fotos/foto 06.jpeg" alt="Foto 3">
+                </div>
+                <p class="quote">"Dois corações, uma só alma, dois anos de felicidade."</p>
+            </div>
+            <div class="photo-frame">
+                <div class="photo-placeholder">
+                    <img src="/Fotos/foto 07.jpeg" alt="Foto 4">
+                </div>
+                <p class="quote">"O amor verdadeiro é eterno, infinito e sempre igual."</p>
+            </div>
+            <div class="photo-frame">
+                <div class="photo-placeholder">
+                    <img src="/Fotos/WhatsApp Image 2024-05-17 at 11.02.38.jpeg" alt="Foto 5">
+                </div>
+                <p class="quote">"A cada dia ao seu lado, meu amor se renova."</p>
+            </div>
+            <div class="photo-frame">
+                <div class="photo-placeholder">
+                    <img src="/Fotos/fotos 08.jpeg" alt="Foto 6">
+                </div>
+                <p class="quote">"Com você, aprendi que o amor é um constante recomeço."</p>
+            </div>
+        </div>
+    
+        <button class="love-btn" onclick="burstHearts()">💖 Amei! 💖</button>
+        
+        <div class="video-container">
+            <h2>🎥 Nossa História em Vídeo</h2>
+            <video controls>
+                <source src="/Videos/nossa-historia.mp4" type="video/mp4">
+            </video>
         </div>
     </div>
+    
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = Math.random() > 0.5 ? '💝' : '💖';
+            heart.style.position = 'absolute';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            heart.style.opacity = Math.random();
+            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+            heart.style.animation = 'float-up 3s linear forwards';
+            
+            document.getElementById('hearts').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 3000);
+        }
+    
+        function burstHearts() {
+            for(let i = 0; i < 30; i++) {
+                setTimeout(createHeart, i * 50);
+            }
+            const btn = document.querySelector('.love-btn');
+            btn.style.animation = 'pulse 0.5s ease';
+            setTimeout(() => {
+                btn.style.animation = '';
+            }, 500);
+        }
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        document.addEventListener('DOMContentLoaded', () => {
+            setInterval(createHeart, 1000);
+        });
+    </script>
 </body>
 </html>
