@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <base href="." />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comemorando 2 Anos de Amor</title>
+    <title>Comemorando 2 Anos de Casamento</title>
     <style>
         body {
             margin: 0;
@@ -13,6 +12,7 @@
             background: linear-gradient(135deg, #ff9a9e, #fad0c4);
             min-height: 100vh;
             color: #4a4a4a;
+            overflow-x: hidden;
         }
         
         .anniversary-container {
@@ -34,14 +34,24 @@
             font-size: 3em;
             margin-bottom: 10px;
         }
-        
+
+        .counter {
+            font-size: 1.5em;
+            color: #4a4a4a;
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
         .photo-gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
             margin: 30px 0;
         }
-        
+
         .photo-frame {
             position: relative;
             background: #fff;
@@ -51,67 +61,19 @@
             transition: transform 0.3s ease;
             text-align: center;
         }
-        
-        .photo-frame:hover {
-            transform: scale(1.03);
-        }
-        
+
         .photo-placeholder img {
             width: 100%;
             height: 200px;
             object-fit: cover;
             border-radius: 8px;
         }
-        
+
         .quote {
             font-size: 1.2em;
             color: #e25c67;
             margin: 10px 0;
             font-style: italic;
-        }
-        
-        .floating-hearts {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 9999;
-        }
-        
-        .love-btn {
-            background: #e25c67;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            margin: 20px auto;
-            display: block;
-            font-size: 1.2em;
-        }
-        
-        .love-btn:hover {
-            transform: scale(1.05);
-            background: #d14d58;
-        }
-        
-        @keyframes float-up {
-            from {
-                transform: translateY(100vh) rotate(0deg);
-            }
-            to {
-                transform: translateY(-100px) rotate(360deg);
-            }
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
         }
 
         .video-container {
@@ -125,18 +87,65 @@
             border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
+
+        .love-btn {
+            background: #e25c67;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin: 20px auto;
+            display: block;
+            font-size: 1.2em;
+        }
+
+        .love-btn:hover {
+            transform: scale(1.05);
+            background: #d14d58;
+        }
+
+        #hearts {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                transform: translateY(-100vh) scale(1.5);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="floating-hearts" id="hearts"></div>
-    
     <div class="anniversary-container">
         <div class="header">
-            <h1>✨ 2 Anos de Amor e Felicidade ✨</h1>
+            <h1>✨ 2 Anos de Casados com Amor e Felicidade ✨</h1>
             <p>Celebrando nossa jornada juntos</p>
+            <div id="wedding-counter" class="counter"></div>
         </div>
-    
+        
         <div class="photo-gallery">
             <div class="photo-frame">
                 <div class="photo-placeholder">
@@ -175,9 +184,15 @@
                 <p class="quote">"Com você, aprendi que o amor é um constante recomeço."</p>
             </div>
         </div>
-    
+
+        <div class="photo-frame">
+            <div class="photo-placeholder">
+                <p class="quote">"Quer saber o tamanho do meu amor por você? Clique várias vezes no botão abaixo!"</p>
+            </div>
+        </div>
+
         <button class="love-btn" onclick="burstHearts()">💖 Amei! 💖</button>
-        
+
         <div class="video-container">
             <h2>🎥 Nossa História em Vídeo</h2>
             <video controls>
@@ -185,13 +200,35 @@
             </video>
         </div>
     </div>
-    
+
+    <div id="hearts"></div>
+
     <script>
+        function calculateWeddingTime() {
+            const weddingDate = new Date(2022, 11, 23, 0, 0, 0); // 23 de dezembro de 2022
+            const now = new Date();
+            const diff = now - weddingDate;
+
+            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
+            const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
+            const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('wedding-counter').innerHTML = `
+                <p>Estamos juntos há:</p>
+                <p><strong>${years} anos, ${months} meses, ${days} dias,</strong></p>
+                <p><strong>${hours} horas, ${minutes} minutos e ${seconds} segundos.</strong></p>
+            `;
+        }
+
         function createHeart() {
             const heart = document.createElement('div');
             heart.innerHTML = Math.random() > 0.5 ? '💝' : '💖';
             heart.style.position = 'absolute';
             heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.bottom = '-30px';
             heart.style.animationDuration = Math.random() * 3 + 2 + 's';
             heart.style.opacity = Math.random();
             heart.style.fontSize = Math.random() * 20 + 10 + 'px';
@@ -203,9 +240,9 @@
                 heart.remove();
             }, 3000);
         }
-    
+
         function burstHearts() {
-            for(let i = 0; i < 30; i++) {
+            for (let i = 0; i < 50; i++) { // Criando 50 corações de uma vez ao clicar
                 setTimeout(createHeart, i * 50);
             }
             const btn = document.querySelector('.love-btn');
@@ -215,8 +252,12 @@
             }, 500);
         }
 
+        // Iniciar os corações automáticos
+        setInterval(createHeart, 200); // Criando um coração a cada 200ms
+
         document.addEventListener('DOMContentLoaded', () => {
-            setInterval(createHeart, 1000);
+            calculateWeddingTime();
+            setInterval(calculateWeddingTime, 1000); // Atualiza a cada segundo
         });
     </script>
 </body>
